@@ -28,7 +28,7 @@ search.addEventListener('click', () => {
   close.addEventListener('click', () => {
     overlay.classList.add('hidden');
   })
-  // input.focus();
+  input.focus();
 })
 
 
