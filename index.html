@@ -8,6 +8,17 @@
 <body>
     <h1>Hello Weather</h1>
 
+    <form class="search-form">
+        <input type="text" class="search" placeholder="City or State">
+        <ul class="suggestions">
+          <li>Filter for a city</li>
+        </ul>
+      </form>
+
+      <div class="words" contenteditable>
+    </div>
+
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places"></script>
     <script src="server.js"></script>
 </body>
 </html>
