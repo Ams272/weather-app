@@ -1,15 +1,21 @@
+let cities = [];
+const voice = document.querySelector('.voice');
 
 const getCity = async () => {
-    let base = 'http://dataservice.accuweather.com/locations/v1/topcities/50?apikey=o9I8UmxOErWHZmnRw2WQi755tEID5ZZD';
+    let base = 'http://dataservice.accuweather.com/locations/v1/topcities/150?apikey=o9I8UmxOErWHZmnRw2WQi755tEID5ZZD';
     const response = await fetch(base);
     const data = await response.json();
     return data;
 }
 
+
 getCity()
-    .then(data => console.log(data[33].LocalizedName))
+    .then(data => data.map(cityName => {
+        cities.push(cityName.LocalizedName);
+    }))
     .catch(err => console.log(err));
 
+console.log(cities);
 
 
 function initialize() {
@@ -26,16 +32,16 @@ function initialize() {
   
   const endpoint = 'https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json';
 
-  const cities = [];
-  fetch(endpoint)
-    .then(blob => blob.json())
-    .then(data => cities.push(...data));
+//   const cities = [];
+//   fetch(endpoint)
+//     .then(blob => blob.json())
+//     .then(data => cities.push(...data));
   
   function findMatches(wordToMatch, cities) {
     return cities.filter(place => {
-      // here we need to figure out if the city or state matches what was searched
+      // here we need to figure out if the city matches what was searched
       const regex = new RegExp(wordToMatch, 'gi');
-      return place.city.match(regex) || place.state.match(regex)
+      return place.match(regex);
     });
   }
   
@@ -47,12 +53,10 @@ function initialize() {
     const matchArray = findMatches(this.value, cities);
     const html = matchArray.map(place => {
       const regex = new RegExp(this.value, 'gi');
-      const cityName = place.city.replace(regex, `<span class="hl">${this.value}</span>`);
-      const stateName = place.state.replace(regex, `<span class="hl">${this.value}</span>`);
+      const cityName = place.replace(regex, `<span class="hl">${this.value}</span>`);
       return `
         <li>
-          <span class="name">${cityName}, ${stateName}</span>
-          <span class="population">${numberWithCommas(place.population)}</span>
+          <span class="name">${cityName}</span>
         </li>
       `;
     }).join('');
@@ -68,6 +72,8 @@ function initialize() {
 
 
   // voice recognition
+
+function voiceRecognizer(){
 
   window.SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
 
@@ -88,15 +94,19 @@ function initialize() {
       const poopScript = transcript.replace(/poop|poo|shit|dump/gi, '💩');
       p.textContent = poopScript;
 
-      if (e.results[0].isFinal) {
-        p = document.createElement('p');
-        words.appendChild(p);
-      }
+    //   if (e.results[0].isFinal) {
+    //     p = document.createElement('p');
+    //     words.appendChild(p);
+    //   }
+
+    search.value = transcript; 
+
   });
 
   recognition.addEventListener('end', recognition.start);
 
   recognition.start();
+}
 
-
+voice.addEventListener('click', voiceRecognizer);
 
