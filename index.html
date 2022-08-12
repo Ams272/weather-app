@@ -1,24 +1,72 @@
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Weather App</title>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <title>Weather</title>
+
+  <link rel="stylesheet" href="../assets/style.css">
+
 </head>
+
 <body>
-    <h1>Hello Weather</h1>
 
-    <form class="search-form">
-        <input type="text" class="search" placeholder="City or State">
-        <ul class="suggestions">
-          <li>Filter for a city</li>
-        </ul>
-      </form>
-
-      <div class="words" contenteditable>
+  <header>
+    <div class="container">
+      <div class="date">
+        <div class="date__day" id="day">Friday</div>
+        <div class="date__year" id="year">August, 2022</div>
+      </div>
+      <div class="toolbar">
+        <span>1</span><span>2</span>
+      </div>
     </div>
+  </header>
 
-    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places"></script>
-    <script src="server.js"></script>
+  <section class="overlay hidden">
+    <div class="close">&times</div>
+    <div class="container">
+      <div class="voice"></div>
+      <div class="search">
+        <div class="btns">
+          <input type="text" placeholder="Enter a location">
+          <button>Search</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <main>
+    <div class="container">
+
+      <div class="desc">
+        <div class="desc__text">
+          Some clouds
+        </div>
+        <div class="desc__image">
+
+        </div>
+      </div>
+
+      <div class="temp">
+        <h1>14<span><sup>⁰</sup>C</span></h1>
+        <p>New York, USA</p>
+      </div>
+
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      Made with ❤ & 😭 from Nigeria by Abdulmuhaymin
+      & Charles. </div>
+  </footer>
+
+  <script src="../assets/script.js"></script>
+
 </body>
+
 </html>
