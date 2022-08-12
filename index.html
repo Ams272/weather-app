@@ -9,7 +9,9 @@
   <title>Weather</title>
 
   <link rel="stylesheet" href="/weather-app/assets/style.css">
-
+  <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places" defer></script>
+  <script src="server.js" defer></script>
+  <script src="/weather-app/assets/script.js" defer></script>
 </head>
 
 <body>
@@ -65,8 +67,19 @@
       & Charles. </div>
   </footer>
 
-  <script src="/weather-app/assets/script.js"></script>
+  <form class="search-form">
+    <input type="text" class="search" placeholder="Popular City">
+    <button class="voice" type="button">record</button>
+    <ul class="suggestions">
+      <li>Filter for a city</li>
+    </ul>
+  </form>
+
+  <div class="words" contenteditable>
 
 </body>
 
+</html>
+  
+</body>
 </html>
