@@ -1,6 +1,10 @@
-let cities = [];
+// variable declarations
 const voice = document.querySelector('.voice');
+const searchInput = document.querySelector('.search');
+const suggestions = document.querySelector('.suggestions');
+let cities = [];
 
+// get cities
 const getCity = async () => {
     let base = 'http://dataservice.accuweather.com/locations/v1/topcities/150?apikey=o9I8UmxOErWHZmnRw2WQi755tEID5ZZD';
     const response = await fetch(base);
@@ -8,34 +12,13 @@ const getCity = async () => {
     return data;
 }
 
-
 getCity()
     .then(data => data.map(cityName => {
         cities.push(cityName.LocalizedName);
     }))
     .catch(err => console.log(err));
 
-console.log(cities);
-
-
-function initialize() {
-    let search = document.querySelector('.search');
-    new google.maps.places.Autocomplete(search);
-  }
-//google.maps.event.addDomListener(window, 'load', initialize);
-
-
-
-
-
-// get city
-  
-  const endpoint = 'https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json';
-
-//   const cities = [];
-//   fetch(endpoint)
-//     .then(blob => blob.json())
-//     .then(data => cities.push(...data));
+//console.log(cities);
   
   function findMatches(wordToMatch, cities) {
     return cities.filter(place => {
@@ -44,46 +27,31 @@ function initialize() {
       return place.match(regex);
     });
   }
-  
-  function numberWithCommas(x) {
-    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-  }
-  
+
   function displayMatches() {
     const matchArray = findMatches(this.value, cities);
     const html = matchArray.map(place => {
       const regex = new RegExp(this.value, 'gi');
       const cityName = place.replace(regex, `<span class="hl">${this.value}</span>`);
-      return `
-        <li>
-          <span class="name">${cityName}</span>
-        </li>
-      `;
+      return `<li>${cityName}</li>`;
     }).join('');
     suggestions.innerHTML = html;
   }
-  
-  const searchInput = document.querySelector('.search');
-  const suggestions = document.querySelector('.suggestions');
-  
+
   searchInput.addEventListener('change', displayMatches);
   searchInput.addEventListener('keyup', displayMatches);
+  searchInput.addEventListener('input', displayMatches);
 
 
-
-  // voice recognition
-
-function voiceRecognizer(){
+// voice recognition
+voice.addEventListener('mouseup', e =>{
+    e.preventDefault;
 
   window.SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-
   const recognition = new SpeechRecognition();
   recognition.interimResults = true;
   recognition.lang = 'en-US';
-  
-  let p = document.createElement('p');
-//   const words = document.querySelector('.words');
-//   words.appendChild(p);
+
 
   recognition.addEventListener('result', e => {
     const transcript = Array.from(e.results)
@@ -91,22 +59,15 @@ function voiceRecognizer(){
       .map(result => result.transcript)
       .join('');
 
-    //   const poopScript = transcript.replace(/poop|poo|shit|dump/gi, '💩');
-    //   p.textContent = poopScript;
-
-    //   if (e.results[0].isFinal) {
-    //     p = document.createElement('p');
-    //     words.appendChild(p);
-    //   }
-
-    search.value = transcript; 
+    searchInput.value = transcript; 
 
   });
 
-  recognition.addEventListener('end', recognition.start);
+  //recognition.addEventListener('end', recognition.start);
 
   recognition.start();
-}
+});
 
-voice.addEventListener('click', voiceRecognizer);
+//voice.addEventListener('click', recognition.start);
+
 
