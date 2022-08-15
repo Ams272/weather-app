@@ -31,8 +31,17 @@ search.addEventListener('click', () => {
   input.focus();
 })
 
+// api test 
 
+async function test() {
 
+  const api = 'http://dataservice.accuweather.com/locations/v1/topcities/50?apikey=o9I8UmxOErWHZmnRw2WQi755tEID5ZZD'
+  const response = await fetch(api);
+  const data = await response.json()
+  console.log(data);
+}
+
+test();
 
 // Geolocation functionality
 
@@ -65,20 +74,20 @@ window.addEventListener('load', () => {
   
 });
   // I also tried using a setTimeout, but still the same thing — Doesn't work.
-  
+
   // setTimeout(() => {
   //   navigator.geolocation.getCurrentPosition((position) => {
   //     alert(position.coords.latitude);
   //   })
   // }, 3000)
-  
+
 
 /**
  * But then I discovered that the FIRST TRIAL will only work
  * if you had location turned on before loading the page
  * which is not what we want.
  */
- 
+
 
 // SECOND TRIAL
 
