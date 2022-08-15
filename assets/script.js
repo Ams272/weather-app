@@ -63,6 +63,7 @@ window.addEventListener('load', () => {
     alert(position.coords.latitude);
   });
   
+});
   // I also tried using a setTimeout, but still the same thing — Doesn't work.
   
   // setTimeout(() => {
@@ -71,7 +72,6 @@ window.addEventListener('load', () => {
   //   })
   // }, 3000)
   
-})
 
 /**
  * But then I discovered that the FIRST TRIAL will only work
