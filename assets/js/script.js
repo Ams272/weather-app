@@ -37,7 +37,8 @@ const reject = document.querySelector('.reject');
 const allow = document.querySelector('.allow');
 const barUp = document.querySelector('.bar-up');
 const preloader = document.querySelector('.preloader');
-
+const apikey = "o9I8UmxOErWHZmnRw2WQi755tEID5ZZD";
+const searchByLoc = "http://dataservice.accuweather.com/locations/v1/cities/geoposition/search?";
 
 
 
@@ -45,6 +46,37 @@ allowBtn.addEventListener('click', function() {
   navigator.geolocation.getCurrentPosition((position) => {
     barUp.style.display = 'none';
     preloader.style.display = 'block';
+
+    let long = position.coords.longitude;
+    let lat = position.coords.latitude;
+
+    async function fetchy() {
+        const resp = await fetch(`${searchByLoc}apikey=${apikey}&q=${lat}%2C${long}`);
+        const data = await resp.json();
+        //console.log(data)
+        //console.log(data.Country.EnglishName);
+        //console.log(data.Key);
+        const countryName = data.Country.EnglishName;
+        const locationKey = data.Key;
+        const locationDetails = {countryName, locationKey};
+        
+        async function getWeather() {
+            const searchByKey = `http://dataservice.accuweather.com/currentconditions/v1/${locationKey}`
+             const resp = await fetch(`${searchByKey}?apikey=${apikey}`);
+             const data = await resp.json();
+             //console.log(data);
+             //console.log(data[0].Temperature)
+             const temperature = `${data[0].Temperature.Metric.Value} degrees`;
+             const weatherCondition = data[0].WeatherText;
+             console.log(weatherCondition);
+             console.log(temperature);
+           }
+          
+           getWeather()
+       }
+      
+       fetchy()
+
   })
 })
 
