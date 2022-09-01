@@ -1,85 +1,126 @@
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
-
   <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
   <title>Weather</title>
 
-  <link rel="stylesheet" href="/weather-app/assets/style.css">
-  <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places" defer></script>
-  <script src="server.js" defer></script>
-  <script src="/weather-app/assets/script.js" defer></script>
+  <link rel="stylesheet" href="./assets/css/style.css">
+  <link rel="stylesheet" href="./assets/css/responsive.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 </head>
 
 <body>
 
   <header>
     <div class="container">
-      <div class="date">
-        <div class="date__day" id="day">Friday</div>
-        <div class="date__year" id="year">August, 2022</div>
-      </div>
-      <div class="toolbar">
-        <span>1</span><span>2</span>
+      <div class="upper">
+        <div class="date">
+          <div class="day">
+          </div>
+          <div class="month-year"></div>
+        </div>
+        <div class="search">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+          </svg>
+        </div>
       </div>
     </div>
   </header>
 
-  <section class="overlay hidden">
-    <div class="close">&times</div>
-    <div class="container">
-      <div class="voice"></div>
-      <div class="search">
-        <div class="btns">
-          <input type="text" placeholder="Enter a location">
-          <button>Search</button>
+  <div id="perm">
+    <section class="welcome">
+      <div class="container allow">
+        <div class="logo">
+          <h4>w(h)eather</h4>
+        </div>
+        <div class="content">
+          <h1>Welcome to W(h)eather</h1>
+          <p>Search for a location for its <br>weather condition, or know yours <br>using your location.</p>
+          <img src="../assets/images/hero.png" alt="the world image">
         </div>
       </div>
+      <div class="reject" style="display: none;">
+        <div class="logo">
+          <h4>w(h)eather</h4>
+        </div>
+        <div class="content">
+          <h1>Permission denied</h1>
+          <p>You need to allow permission for this app to work. Or search for a location.</p>
+        </div>
+        
+        <form action="">
+          <input type="text" name="" id="" placeholder="Enter a location">
+          <button>Search</button>
+        </form>
+        <img src="../assets/images/reject.png" class="rej-img" alt="sad face">
+      </div>
+    </section>
+  
+    <section class="confirmation hidden">
+      <div class="overlay">
+      </div>
+      <div class="bar-up animate__animated animate__headShake">
+        <div class="container">
+          <h3>Confirm</h3>
+          <p>This app needs permission to use your location. </p>
+          <div class="btn-group">
+            <button class="dont">Don't allow</button>
+            <button class="allowBtn">Allow</button>
+          </div>
+        </div>
+      </div>
+      <div class="preloader" style="display: none">
+        <img class="load-image" src="../assets/images/location.png" alt="location loading">
+        <p class="load-text">Locating . . .</p>
+      </div>
+      
+    </section>
+  </div>
+
+
+  <section>
+    <div class="overlay hidden">
+      <svg class="w-6 h-6 close" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+      </svg>
+      <form action="">
+        <input type="text" placeholder="Enter a location">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"></path>
+        </svg>
+        <button>Search</button>
+      </form>
     </div>
   </section>
 
   <main>
     <div class="container">
-
       <div class="desc">
-        <div class="desc__text">
-          Some clouds
-        </div>
-        <div class="desc__image">
-
-        </div>
+        Some clouds
       </div>
-
+      <div class="img">
+      </div>
       <div class="temp">
-        <h1>14<span><sup>⁰</sup>C</span></h1>
-        <p>New York, USA</p>
+        <h1>13<span class="celcius">°C</span></h1>
       </div>
-
+      <div class="country">
+        Rome, Italy
+      </div>
     </div>
   </main>
 
   <footer>
     <div class="container">
-      Made with ❤ & 😭 from Nigeria by Abdulmuhaymin
-      & Charles. </div>
+      Made with ❤ from Nigeria by Abdulmuhaymin & Charles.
+    </div>
   </footer>
 
-  <form class="search-form">
-    <input type="text" class="search" placeholder="Popular City">
-    <button class="voice" type="button">record</button>
-    <ul class="suggestions">
-      <li>Filter for a city</li>
-    </ul>
-  </form>
-
-  <div class="words" contenteditable>
-
+  <script src="./assets/js/script.js"></script>
 </body>
 
-</html>
-  
-</body>
 </html>

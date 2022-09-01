@@ -1,10 +1,6 @@
 {
-  "london": {
-    "temp": [20,50,-13,0],
-    "condition": ["cloudy", "clear", "rainy", "sunny"]
-  },
-  "abuja": {
-    "temp": [40,27,33,13],
-    "condition": ["sunny", "starry", "misty", "clear"]
-  }
+  "firstName": "Jon",
+  "lastName": "Bellion",
+  "age": 32,
+  "isSinger": true
 }
