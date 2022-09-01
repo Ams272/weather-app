@@ -1,14 +1,38 @@
 const search = document.querySelector('.search');
 const overlay = document.querySelector('.overlay.hidden');
 const clos = document.querySelector('.close');
+const mainInputField = document.querySelector('.main-input');
+const mainBtn = document.querySelector('.main-btn');
+
+
+const allowBtn = document.querySelector('.allowBtn');
+const endPoint = 'http://dataservice.accuweather.com/locations/v1/topcities/50?apikey=o9I8UmxOErWHZmnRw2WQi755tEID5ZZD';
+const dont = document.querySelector('.dont');
+const reject = document.querySelector('.reject');
+const allow = document.querySelector('.allow');
+const barUp = document.querySelector('.bar-up');
+const preloader = document.querySelector('.preloader');
+const apikey = "o9I8UmxOErWHZmnRw2WQi755tEID5ZZD";
+const searchByLoc = "http://dataservice.accuweather.com/locations/v1/cities/geoposition/search?";
+
 
 search.addEventListener('click', () => {
     overlay.classList.remove('hidden');
+    mainInputField.focus();
 });
 
 clos.addEventListener('click', () => {
     overlay.classList.add('hidden');
 });
+
+mainBtn.addEventListener('click', () => {
+  // async function fetchyTwo() {
+  //   const resp = await fetch()
+  // }
+  document.querySelector('.search-div').style.display = 'none';
+  preloader.style.display = 'block';
+})
+
 
 const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
@@ -30,16 +54,9 @@ setTimeout(() => {
 }, 5000);
 
 
-const allowBtn = document.querySelector('.allowBtn');
-const endPoint = 'http://dataservice.accuweather.com/locations/v1/topcities/50?apikey=o9I8UmxOErWHZmnRw2WQi755tEID5ZZD';
-const dont = document.querySelector('.dont');
-const reject = document.querySelector('.reject');
-const allow = document.querySelector('.allow');
-const barUp = document.querySelector('.bar-up');
-const preloader = document.querySelector('.preloader');
-const apikey = "o9I8UmxOErWHZmnRw2WQi755tEID5ZZD";
-const searchByLoc = "http://dataservice.accuweather.com/locations/v1/cities/geoposition/search?";
-
+const condition = document.querySelector('.desc');
+const temp = document.querySelector('.temp-no');
+const locus = document.querySelector('.country');
 
 
 allowBtn.addEventListener('click', function() {
@@ -50,7 +67,8 @@ allowBtn.addEventListener('click', function() {
     let long = position.coords.longitude;
     let lat = position.coords.latitude;
 
-    async function fetchy() {
+    setTimeout(() => {
+      async function fetchy() {
         const resp = await fetch(`${searchByLoc}apikey=${apikey}&q=${lat}%2C${long}`);
         const data = await resp.json();
         //console.log(data)
@@ -61,22 +79,26 @@ allowBtn.addEventListener('click', function() {
         const locationDetails = {countryName, locationKey};
         
         async function getWeather() {
-            const searchByKey = `http://dataservice.accuweather.com/currentconditions/v1/${locationKey}`
+             const searchByKey = `http://dataservice.accuweather.com/currentconditions/v1/${locationKey}`
              const resp = await fetch(`${searchByKey}?apikey=${apikey}`);
              const data = await resp.json();
              //console.log(data);
-             //console.log(data[0].Temperature);
-             const temperature = `${data[0].Temperature.Metric.Value} degrees`;
+             //console.log(data[0].Temperature)
+             const temperature = `${data[0].Temperature.Metric.Value}`;
              const weatherCondition = data[0].WeatherText;
              perm.style.display = 'none'
-             alert(weatherCondition);
-             alert(temperature);
+             condition.textContent = weatherCondition;
+             temp.textContent = Math.round(temperature);
+             locus.textContent = countryName;
            }
           
            getWeather()
        }
       
        fetchy()
+    }, 2000);
+
+    
 
   })
 })
