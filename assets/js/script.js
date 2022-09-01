@@ -68,8 +68,9 @@ allowBtn.addEventListener('click', function() {
              //console.log(data[0].Temperature)
              const temperature = `${data[0].Temperature.Metric.Value} degrees`;
              const weatherCondition = data[0].WeatherText;
-             console.log(weatherCondition);
-             console.log(temperature);
+             perm.style.display = 'none'
+             alert(weatherCondition);
+             alert(temperature);
            }
           
            getWeather()
