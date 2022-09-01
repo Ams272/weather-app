@@ -65,7 +65,7 @@ allowBtn.addEventListener('click', function() {
              const resp = await fetch(`${searchByKey}?apikey=${apikey}`);
              const data = await resp.json();
              //console.log(data);
-             //console.log(data[0].Temperature)
+             //console.log(data[0].Temperature);
              const temperature = `${data[0].Temperature.Metric.Value} degrees`;
              const weatherCondition = data[0].WeatherText;
              perm.style.display = 'none'

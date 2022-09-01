@@ -1,6 +1,8 @@
 // variable declarations
 const voice = document.querySelector('.voice');
 const searchInput = document.querySelector('.search');
+const searchButton = document.querySelector('.searchButton');
+const searchValue = searchInput.value;
 const suggestions = document.querySelector('.suggestions');
 let cities = [];
 
@@ -41,6 +43,12 @@ getCity()
   searchInput.addEventListener('change', displayMatches);
   searchInput.addEventListener('keyup', displayMatches);
   searchInput.addEventListener('input', displayMatches);
+
+// 
+
+searchButton.addEventListener('click' ()=>{
+  console.log('good');
+})
 
 
 // voice recognition
