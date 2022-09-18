@@ -53,11 +53,23 @@
           <p>You need to allow permission for this app to work. Or search for a location.</p>
         </div>
         
-        <form action="">
-          <input type="text" name="" id="" placeholder="Enter a location">
-          <button>Search</button>
-        </form>
+        <div class="form"> 
+            <svg class="w-6 h-6 voice" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"></path>
+            </svg>
+            <input type="text" class="main-input" name="" id="" placeholder="Enter a location">
+         
+          
+          <button class="main-btn">Search</button>
+        </div>
+        
+        <ul class="suggestions">
+          <li>Filter for a city</li>
+          <li>or a country</li>
+        </ul>
+
         <img src="../assets/images/reject.png" class="rej-img" alt="sad face">
+
       </div>
     </section>
   
@@ -89,14 +101,21 @@
         <svg class="w-6 h-6 close" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
         </svg>
-        <form action="">
-          <input type="text" placeholder="Enter a location" class="main-input">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"></path>
-          </svg>
+        <div class="form">
+            <input type="text" placeholder="Enter a location" class="main-input">
+            <svg class="w-6 h-6 voice" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"></path>
+            </svg>
           <button class="main-btn">Search</button>
-        </form>
+          
+        </div>
+        <ul class="suggestions">
+          <li>Filter for a city</li>
+          <li>or a country</li>
+        </ul>
+
       </div>
+      
       <div class="preloader" style="display: none">
         <img class="load-image" src="../assets/images/location.png" alt="location loading">
         <p class="load-text">Locating . . .</p>

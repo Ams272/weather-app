@@ -1,10 +1,12 @@
 // variable declarations
-const voice = document.querySelector('.voice');
-const searchInput = document.querySelector('.search');
-const searchButton = document.querySelector('.searchButton');
-const searchValue = searchInput.value;
-const suggestions = document.querySelector('.suggestions');
+const voice = document.querySelectorAll('.voice');
+const searchInput = document.querySelectorAll('.main-input');
+const searchButton = document.querySelectorAll('main-btn');
+const suggestions = document.querySelectorAll('.suggestions');
+//const suggestionList = suggestions.forEach(suggestion => suggestion.querySelectorAll('suggestions li'));
+const form = document.querySelectorAll('.form');
 let cities = [];
+//const apikey = "o9I8UmxOErWHZmnRw2WQi755tEID5ZZD";
 
 // get cities
 const getCity = async () => {
@@ -16,7 +18,12 @@ const getCity = async () => {
 
 getCity()
     .then(data => data.map(cityName => {
-        cities.push(cityName.LocalizedName);
+        cities.push(
+          {
+            name: cityName.LocalizedName,
+            key: cityName.Key
+          }
+          );
     }))
     .catch(err => console.log(err));
 
@@ -26,33 +33,51 @@ getCity()
     return cities.filter(place => {
       // here we need to figure out if the city matches what was searched
       const regex = new RegExp(wordToMatch, 'gi');
-      return place.match(regex);
+      return place.name.match(regex);
     });
   }
 
   function displayMatches() {
     const matchArray = findMatches(this.value, cities);
-    const html = matchArray.map(place => {
+    let html = matchArray.map(place => {
       const regex = new RegExp(this.value, 'gi');
-      const cityName = place.replace(regex, `<span class="hl">${this.value}</span>`);
+      const cityName = place.name.replace(regex, `<span class="hl">${this.value}</span>`);
       return `<li>${cityName}</li>`;
     }).join('');
-    suggestions.innerHTML = html;
+    suggestions.forEach(suggestion => suggestion.innerHTML = html);
+
+    suggestions.forEach(suggestion => suggestion.addEventListener('click', (e) => {
+      //console.log(e.target.textContent);
+      searchInput.forEach(input => input.value = e.target.textContent);
+
+      // clear the lists
+      suggestion.innerHTML = '';
+    }))
+    
   }
 
-  searchInput.addEventListener('change', displayMatches);
-  searchInput.addEventListener('keyup', displayMatches);
-  searchInput.addEventListener('input', displayMatches);
+  searchInput.forEach(searchInput => searchInput.addEventListener('change', displayMatches));
+  searchInput.forEach(searchInput => searchInput.addEventListener('keyup', displayMatches));
+  searchInput.forEach(searchInput => searchInput.addEventListener('input', displayMatches));
 
-// 
+// carry out search action
 
-searchButton.addEventListener('click' ()=>{
+searchButton.forEach( searchButton => searchButton.addEventListener('click', () => {
   console.log('good');
+  const searchValue = searchInput.value;
+  console.log(searchValue);
 })
+)
+
+// suggestionList.forEach(list => list.addEventListener('click', () =>{
+//   console.log(this.textContent);
+//   searchInput.value = list.textContent;
+// }))
 
 
 // voice recognition
-voice.addEventListener('mouseup', e =>{
+
+voice.forEach(voice => voice.addEventListener('mousedown', e =>{
     e.preventDefault;
 
   window.SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -64,17 +89,24 @@ voice.addEventListener('mouseup', e =>{
   recognition.addEventListener('result', e => {
     const transcript = Array.from(e.results)
       .map(result => result[0])
-      .map(result => result.transcript)
+      .map(result => result.transcript.split(','))
       .join('');
 
-    searchInput.value = transcript; 
+     
+
+    searchInput.forEach(searchInput => {
+      form.forEach(form => form.addEventListener('click', ()=>{
+        searchInput.value = transcript;
+    }))
 
   });
 
+  })
   //recognition.addEventListener('end', recognition.start);
 
   recognition.start();
-});
+})
+)
 
 //voice.addEventListener('click', recognition.start);
 
