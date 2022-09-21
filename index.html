@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <!-- Meta tags -->
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="Any weather gives accurate weather conditions of any location, using geolocation, manual search features, with voice interpretation.">
+  <meta name="author" content="Abdulmuhaymin Sadiq, Charles Wisdom">
+
+  <meta property="og:image" content="">
+  <meta property="og:description" content="">
+  <meta property="og:title" content="">
+
+
+  <!-- Title -->
+
+  <title>Any Weather | Weather Condition of any location</title>
+
+  <!-- Links -->
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="//assets/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/assets/favicon/site.webmanifest">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+
+  <link rel="stylesheet" href="/assets/css/style.css">
+
+</head>
+
+<body>
+  <header>
+    <div class="container">
+      <nav>
+        <div class="date">
+          <div class="day">Friday</div>
+          <div class="month">July, 2016</div>
+        </div>
+        <div class="search">
+          <ion-icon name="search-outline"></ion-icon>
+        </div>
+      </nav>
+    </div>
+  </header>
+  <section class="welcome-content">
+    <div class="container">
+      <div class="welcome-head">
+        <h1>== Any Weather ==</h1>
+        <p>Any weather lets you search for the weather condition of any location at any given time, using your device's
+          geolocation, or microphone.</p>
+      </div>
+    </div>
+    <div class="overlay confirmer">
+      <div class="confirmation">
+        <h4>Confirmation</h4>
+        <p>This app requires permission to use your location.</p>
+        <div class="btns">
+          <button>Don't allow</button>
+          <button>Allow</button>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="content" style="display: none;">
+    <div class="container">
+      <aside>
+        <section class="desc">
+          <div class="desc-text animate__animated animate__fadeInUp">
+            Cloudy
+          </div>
+          <div class="desc-img animate__animated animate__fadeInUp animate__delay-1s">
+            <ion-icon name="cloudy-outline"></ion-icon>
+          </div>
+        </section>
+
+      </aside>
+      <main>
+
+        <div class="data">
+          <div class="temperature animate__animated animate__fadeInUp animate__delay-2s">
+            <h1><span class="temp">13</span><span class="celcius">0C</span></h1>
+          </div>
+          <div class="country">
+            <span class="country-name animate__animated animate__fadeInUp animate__delay-3s">Rome,
+              Italy</span>
+          </div>
+        </div>
+
+      </main>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container animate__animated animate__tada animate__delay-4s">
+      <p>Made with love by Abdulmuhaymin & Charles</p>
+    </div>
+  </footer>
+
+  <div class="overlay searcher">
+    <div class="search-field">
+      <form action="">
+        <ion-icon name="mic-outline"></ion-icon>
+        <input type="text" placeholder="Search for a location">
+        <button>Search</button>
+      </form>
+      <ion-icon name="close-outline" class="close"></ion-icon>
+    </div>
+  </div>
+
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+  <script src="/assets/js/script.js"></script>
+</body>
+
+</html>
