@@ -50,19 +50,23 @@
   <section class="welcome-content">
     <div class="container">
       <div class="welcome-head">
-        <h1>== Any Weather ==</h1>
-        <p>Any weather lets you search for the weather condition of any location at any given time, using your device's
+        <h1 class="animate__animated animate__fadeInUp animate__delay-1s">== Any Weather ==</h1>
+        <p class="animate__animated animate__fadeInUp animate__delay-2s">Any weather lets you search for the weather condition of any location at any given time, using your device's
           geolocation, or microphone.</p>
       </div>
     </div>
     <div class="overlay confirmer">
-      <div class="confirmation">
+      <div class="confirmation animate__animated animate__zoomIn">
         <h4>Confirmation</h4>
         <p>This app requires permission to use your location.</p>
         <div class="btns">
-          <button>Don't allow</button>
-          <button>Allow</button>
+          <button class="reject">Don't allow</button>
+          <button class="permit">Allow</button>
         </div>
+      </div>
+      <div class="preloader" style="display: none;">
+        <img src="/assets/images/location.png" alt="" class="animate__animated animate__headShake animate__infinite">
+        <p>Loading...</p>
       </div>
     </div>
   </section>

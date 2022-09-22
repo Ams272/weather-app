@@ -238,3 +238,10 @@ form ion-icon {
 .btns button:last-child {
   background-color: lightgreen;
 }
+
+/* PRELOADER */
+
+.preloader img {
+  height: 100px;
+  margin-bottom: 20px;
+}

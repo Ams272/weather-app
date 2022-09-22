@@ -31,11 +31,77 @@ thisMonth.textContent = `${months[month]}, ${year}`;
 
 // Geolocation confirmation
 
-const confirmBox = document.querySelector('.confirmer')
+const confirmOverLay = document.querySelector('.confirmer');
+const confirmBox = document.querySelector('.confirmation');
+const preloader = document.querySelector('.preloader');
+const permit = document.querySelector('.permit');
+const reject = document.querySelector('.reject');
+const apikey = "o9I8UmxOErWHZmnRw2WQi755tEID5ZZD";
+const searchByLoc = "http://dataservice.accuweather.com/locations/v1/cities/geoposition/search?";
+const welcome = document.querySelector('.welcome-content');
+const mainContent = document.querySelector('.content');
+
+const condition = document.querySelector('.desc-text');
+const temp = document.querySelector('.temp');
+const locus = document.querySelector('.country-name');
+
 
 setTimeout(() => {
-  confirmBox.style.display = 'flex';
-}, 6000);
+  confirmOverLay.style.display = 'flex';
+}, 7000);
+
+permit.addEventListener('click', function() {
+  // alert('working')
+  navigator.geolocation.getCurrentPosition((position) => {
+    setTimeout(() => {
+      confirmBox.style.display = 'none';
+      preloader.style.display = 'block';
+    }, 500);
+        
+    let long = position.coords.longitude;
+    let lat = position.coords.latitude;
+
+
+    setTimeout(() => {
+      async function fetchy() {
+        const resp = await fetch(`${searchByLoc}apikey=${apikey}&q=${lat}%2C${long}`);
+        const data = await resp.json();
+        //console.log(data)
+        //console.log(data.Country.EnglishName);
+        //console.log(data.Key);
+        const countryName = data.Country.EnglishName;
+        const locationKey = data.Key;
+        const locationDetails = {countryName, locationKey};
+        
+        
+          
+          getWeather(locationKey, countryName)
+       }
+      
+       fetchy()
+    }, 2000);
+
+    
+
+  })
+})
+
+
+async function getWeather(locationKey, countryName) {
+  const searchByKey = `http://dataservice.accuweather.com/currentconditions/v1/${locationKey}`
+  const resp = await fetch(`${searchByKey}?apikey=${apikey}`);
+  const data = await resp.json();
+  //console.log(data);
+  //console.log(data[0].Temperature)
+  const temperature = `${data[0].Temperature.Metric.Value}`;
+  const weatherCondition = data[0].WeatherText;
+  confirmOverLay.style.display = 'none';
+  welcome.style.display = 'none';
+  mainContent.style.display = 'block';
+  condition.textContent = weatherCondition;
+  temp.textContent = Math.round(temperature);
+  locus.textContent = countryName;
+}
 
 
 // const allowBtn = document.querySelector('.allowBtn');
@@ -99,9 +165,7 @@ setTimeout(() => {
 // }, 5000);
 
 
-// const condition = document.querySelector('.desc');
-// const temp = document.querySelector('.temp-no');
-// const locus = document.querySelector('.country');
+
 
 
 // allowBtn.addEventListener('click', function() {
@@ -112,43 +176,14 @@ setTimeout(() => {
 //     let long = position.coords.longitude;
 //     let lat = position.coords.latitude;
 
-//     setTimeout(() => {
-//       async function fetchy() {
-//         const resp = await fetch(`${searchByLoc}apikey=${apikey}&q=${lat}%2C${long}`);
-//         const data = await resp.json();
-//         //console.log(data)
-//         //console.log(data.Country.EnglishName);
-//         //console.log(data.Key);
-//         const countryName = data.Country.EnglishName;
-//         const locationKey = data.Key;
-//         const locationDetails = {countryName, locationKey};
-        
-        
-          
-//           getWeather(locationKey, countryName)
-//        }
-      
-//        fetchy()
-//     }, 2000);
+    
 
     
 
 //   })
 // })
 
-// async function getWeather(locationKey, countryName) {
-//   const searchByKey = `http://dataservice.accuweather.com/currentconditions/v1/${locationKey}`
-//   const resp = await fetch(`${searchByKey}?apikey=${apikey}`);
-//   const data = await resp.json();
-//   //console.log(data);
-//   //console.log(data[0].Temperature)
-//   const temperature = `${data[0].Temperature.Metric.Value}`;
-//   const weatherCondition = data[0].WeatherText;
-//   perm.style.display = 'none'
-//   condition.textContent = weatherCondition;
-//   temp.textContent = Math.round(temperature);
-//   locus.textContent = countryName;
-// }
+
 
 // dont.addEventListener('click', () => {
 //   confirm.style.display = 'none';
