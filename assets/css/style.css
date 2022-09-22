@@ -81,6 +81,10 @@ nav .date .month {
 
 /* CONTENT */
 
+section.content{
+  display: flex;
+}
+
 section.content .container {
   display: flex;
   justify-content: space-between;

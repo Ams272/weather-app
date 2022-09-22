@@ -1,8 +1,11 @@
 const search = document.querySelector('.search');
 const searchOverlay = document.querySelector('.overlay.searcher')
 const close = document.querySelector('.close');
-const formInput = document.querySelectorAll('form input');
-const formBtn = document.querySelectorAll('form button');
+const formInput = document.querySelector('form input');
+const formBtn = document.querySelector('form button');
+const reject = document.querySelector('.reject');
+const allow = document.querySelector('.allow');
+const content = document.querySelector('.content');
 
 // Search functionality
 
@@ -31,22 +34,23 @@ thisMonth.textContent = `${months[month]}, ${year}`;
 
 // Geolocation confirmation
 
-const confirmBox = document.querySelector('.confirmer')
+const confirmBox = document.querySelector('.confirmer');
 
 setTimeout(() => {
   confirmBox.style.display = 'flex';
 }, 6000);
 
+reject.addEventListener('click', ()=> confirmBox.style.display = 'none');
 
 // const allowBtn = document.querySelector('.allowBtn');
-// const endPoint = 'http://dataservice.accuweather.com/locations/v1/topcities/50?apikey=o9I8UmxOErWHZmnRw2WQi755tEID5ZZD';
+const endPoint = 'http://dataservice.accuweather.com/locations/v1/topcities/50?apikey=o9I8UmxOErWHZmnRw2WQi755tEID5ZZD';
 // const dont = document.querySelector('.dont');
 // const reject = document.querySelector('.reject');
 // const allow = document.querySelector('.allow');
 // const barUp = document.querySelector('.bar-up');
 // const preloader = document.querySelector('.preloader');
-// const apikey = "o9I8UmxOErWHZmnRw2WQi755tEID5ZZD";
-// const searchByLoc = "http://dataservice.accuweather.com/locations/v1/cities/geoposition/search?";
+const apikey = "o9I8UmxOErWHZmnRw2WQi755tEID5ZZD";
+const searchByLoc = "http://dataservice.accuweather.com/locations/v1/cities/geoposition/search?";
 
 
 // search.addEventListener('click', () => {
@@ -99,56 +103,56 @@ setTimeout(() => {
 // }, 5000);
 
 
-// const condition = document.querySelector('.desc');
-// const temp = document.querySelector('.temp-no');
-// const locus = document.querySelector('.country');
+const condition = document.querySelector('.desc-text');
+const temp = document.querySelector('.temp');
+const locus = document.querySelector('.country-name');
 
 
-// allowBtn.addEventListener('click', function() {
-//   navigator.geolocation.getCurrentPosition((position) => {
-//     barUp.style.display = 'none';
-//     preloader.style.display = 'block';
+allow.addEventListener('click', function() {
+  navigator.geolocation.getCurrentPosition((position) => {
+    confirmBox.style.display = 'none';
+    //content.style.display = 'block';
 
-//     let long = position.coords.longitude;
-//     let lat = position.coords.latitude;
+    let long = position.coords.longitude;
+    let lat = position.coords.latitude;
 
-//     setTimeout(() => {
-//       async function fetchy() {
-//         const resp = await fetch(`${searchByLoc}apikey=${apikey}&q=${lat}%2C${long}`);
-//         const data = await resp.json();
-//         //console.log(data)
-//         //console.log(data.Country.EnglishName);
-//         //console.log(data.Key);
-//         const countryName = data.Country.EnglishName;
-//         const locationKey = data.Key;
-//         const locationDetails = {countryName, locationKey};
+    setTimeout(() => {
+      async function fetchy() {
+        const resp = await fetch(`${searchByLoc}apikey=${apikey}&q=${lat}%2C${long}`);
+        const data = await resp.json();
+        //console.log(data)
+        //console.log(data.Country.EnglishName);
+        //console.log(data.Key);
+        const countryName = data.Country.EnglishName;
+        const locationKey = data.Key;
+        const locationDetails = {countryName, locationKey};
         
         
           
-//           getWeather(locationKey, countryName)
-//        }
+          getWeather(locationKey, countryName)
+       }
       
-//        fetchy()
-//     }, 2000);
+       fetchy()
+    }, 2000);
 
     
 
-//   })
-// })
+  })
+})
 
-// async function getWeather(locationKey, countryName) {
-//   const searchByKey = `http://dataservice.accuweather.com/currentconditions/v1/${locationKey}`
-//   const resp = await fetch(`${searchByKey}?apikey=${apikey}`);
-//   const data = await resp.json();
-//   //console.log(data);
-//   //console.log(data[0].Temperature)
-//   const temperature = `${data[0].Temperature.Metric.Value}`;
-//   const weatherCondition = data[0].WeatherText;
-//   perm.style.display = 'none'
-//   condition.textContent = weatherCondition;
-//   temp.textContent = Math.round(temperature);
-//   locus.textContent = countryName;
-// }
+async function getWeather(locationKey, countryName) {
+  const searchByKey = `http://dataservice.accuweather.com/currentconditions/v1/${locationKey}`
+  const resp = await fetch(`${searchByKey}?apikey=${apikey}`);
+  const data = await resp.json();
+  //console.log(data);
+  //console.log(data[0].Temperature)
+  const temperature = `${data[0].Temperature.Metric.Value}`;
+  const weatherCondition = data[0].WeatherText;
+  condition.textContent = weatherCondition;
+  temp.textContent = Math.round(temperature);
+  locus.textContent = countryName;
+  content.style.display = 'block';
+}
 
 // dont.addEventListener('click', () => {
 //   confirm.style.display = 'none';

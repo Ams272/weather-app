@@ -111,3 +111,5 @@ voice.forEach(voice => voice.addEventListener('mousedown', e =>{
 //voice.addEventListener('click', recognition.start);
 
 
+//how to get the stock data of Tesla in javascript?
+
