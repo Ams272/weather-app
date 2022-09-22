@@ -29,7 +29,7 @@
   <link rel="manifest" href="/assets/favicon/site.webmanifest">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
 
-  <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="stylesheet" href="../weather-app/assets/css/style.css">
 
 </head>
 
@@ -58,10 +58,14 @@
     <div class="overlay confirmer">
       <div class="confirmation animate__animated animate__zoomIn">
         <h4>Confirmation</h4>
-        <p>This app requires permission to use your location.</p>
+        <p>This app requires permission to use your location to display your location's weather info.</p>
         <div class="btns">
           <button class="reject">Don't allow</button>
+<<<<<<< HEAD
           <button class="permit">Allow</button>
+=======
+          <button class="allow">Allow</button>
+>>>>>>> e230b4ced300c6ac677189adfe5ae74706b29723
         </div>
       </div>
       <div class="preloader" style="display: none;">
@@ -70,6 +74,7 @@
       </div>
     </div>
   </section>
+
   <section class="content" style="display: none;">
     <div class="container">
       <aside>
@@ -87,7 +92,7 @@
 
         <div class="data">
           <div class="temperature animate__animated animate__fadeInUp animate__delay-2s">
-            <h1><span class="temp">13</span><span class="celcius">0C</span></h1>
+            <h1><span class="temp">13</span><span class="celcius">°C</span></h1>
           </div>
           <div class="country">
             <span class="country-name animate__animated animate__fadeInUp animate__delay-3s">Rome,
@@ -107,11 +112,17 @@
 
   <div class="overlay searcher">
     <div class="search-field">
-      <form action="">
-        <ion-icon name="mic-outline"></ion-icon>
+      <div class="form">
+        <ion-icon name="mic-outline" class="mic"></ion-icon>
         <input type="text" placeholder="Search for a location">
-        <button>Search</button>
-      </form>
+        <button class="searchBtn">Search</button>
+        <ul class="suggestions">
+          <li>Filter for a city</li>
+          <li>or any specific location</li>
+        </ul>
+      </div>
+      
+
       <ion-icon name="close-outline" class="close"></ion-icon>
     </div>
   </div>
@@ -119,7 +130,8 @@
   <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 
-  <script src="/assets/js/script.js"></script>
+  <script src="../weather-app/assets/js/script.js"></script>
+  <script src="../weather-app/server.js"></script>
 </body>
 
 </html>
