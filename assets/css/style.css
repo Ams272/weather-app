@@ -140,16 +140,17 @@ footer .container p {
   right: 50px
 }
 
-.search-field form {
+.search-field .form {
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-direction: column;
   gap: 20px;
   position: relative;
+  max-height: 200px;
 }
 
-form input {
+.form input {
   border: none;
   background-color: transparent;
   border-bottom: 2px solid var(--white);
@@ -164,7 +165,7 @@ form input {
   color: var(--white);
 }
 
-form button {
+.form button {
   padding: 8px 25px;
   background-color: transparent;
   border: none;
@@ -176,12 +177,12 @@ form button {
   cursor: pointer;
 }
 
-form button:hover {
+.form button:hover {
   background-color: var(--white);
   color: var(--black);
 }
 
-form ion-icon {
+.form ion-icon {
   position: absolute;
   right: 15px;
   top: 23px;
@@ -241,4 +242,41 @@ form ion-icon {
 
 .btns button:last-child {
   background-color: lightgreen;
+}
+
+.suggestions {
+  margin: 0;
+  padding: 0;
+  position: relative;
+  /*perspective: 20px;*/
+  overflow-y: visible;
+  
+}
+
+.suggestions li {
+  background: rgb(80, 40, 40);
+  list-style: none;
+  border-bottom: 1px solid #D8D8D8;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.14);
+  margin: 0;
+  padding: 20px;
+  transition: background 0.2s;
+  display: flex;
+  justify-content: flex-start;
+  text-transform: capitalize;
+  color: black;
+}
+
+.suggestions li:nth-child(even) {
+  transform: perspective(100px) rotateX(3deg) translateY(2px) scale(1.001);
+  background: linear-gradient(to bottom,  #ffffff 0%,#EFEFEF 100%);
+}
+
+.suggestions li:nth-child(odd) {
+  transform: perspective(100px) rotateX(-3deg) translateY(3px);
+  background: linear-gradient(to top,  #ffffff 0%,#EFEFEF 100%);
+}
+
+.hl {
+  background: #ffc600;
 }

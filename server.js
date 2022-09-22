@@ -1,8 +1,8 @@
 // variable declarations
-const voice = document.querySelectorAll('.voice');
-const searchInput = document.querySelectorAll('.main-input');
-const searchButton = document.querySelectorAll('main-btn');
-const suggestions = document.querySelectorAll('.suggestions');
+const voice = document.querySelector('.mic');
+// const formInput = document.querySelector('.form input');
+// const formBtn = document.querySelector('.form button');
+const suggestions = document.querySelector('.suggestions');
 //const suggestionList = suggestions.forEach(suggestion => suggestion.querySelectorAll('suggestions li'));
 const form = document.querySelectorAll('.form');
 let cities = [];
@@ -44,69 +44,88 @@ getCity()
       const cityName = place.name.replace(regex, `<span class="hl">${this.value}</span>`);
       return `<li>${cityName}</li>`;
     }).join('');
-    suggestions.forEach(suggestion => suggestion.innerHTML = html);
+    suggestions.innerHTML = html;
 
-    suggestions.forEach(suggestion => suggestion.addEventListener('click', (e) => {
+    suggestions.addEventListener('click', (e) => {
       //console.log(e.target.textContent);
-      searchInput.forEach(input => input.value = e.target.textContent);
+      formInput.value = e.target.textContent;
 
-      // clear the lists
-      suggestion.innerHTML = '';
-    }))
+      // clear and redo the lists
+      suggestions.innerHTML = `<ul class="suggestions">
+      <li>Filter for a city</li>
+      <li>or any specific location</li>
+    </ul>`;
+
+      //formInput.value = '';
+
+    })
+    //formInput.value = '';
+
+    if(formInput.value === ''){
+      suggestions.innerHTML = `<ul class="suggestions">
+      <li>Filter for a city</li>
+      <li>or any specific location</li>
+    </ul>`;
+    }
     
   }
 
-  searchInput.forEach(searchInput => searchInput.addEventListener('change', displayMatches));
-  searchInput.forEach(searchInput => searchInput.addEventListener('keyup', displayMatches));
-  searchInput.forEach(searchInput => searchInput.addEventListener('input', displayMatches));
+  formInput.addEventListener('change', displayMatches);
+  formInput.addEventListener('keyup', displayMatches);
+  formInput.addEventListener('input', displayMatches);
+
+  // clear and revert 
+
+
+
 
 // carry out search action
 
-searchButton.forEach( searchButton => searchButton.addEventListener('click', () => {
-  console.log('good');
-  const searchValue = searchInput.value;
-  console.log(searchValue);
-})
-)
+// formBtn.addEventListener('click', () => {
+//   //console.log('good');
+//   const searchValue = formInput.value;
+//   //console.log(searchValue);
+// })
+
 
 // suggestionList.forEach(list => list.addEventListener('click', () =>{
 //   console.log(this.textContent);
-//   searchInput.value = list.textContent;
+//   formInput.value = list.textContent;
 // }))
 
 
 // voice recognition
 
-voice.forEach(voice => voice.addEventListener('mousedown', e =>{
+let isRecording = false;
+
+voice.addEventListener('mousedown', e =>{
     e.preventDefault;
 
   window.SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
   const recognition = new SpeechRecognition();
   recognition.interimResults = true;
   recognition.lang = 'en-US';
-
+  isRecording = true;
 
   recognition.addEventListener('result', e => {
     const transcript = Array.from(e.results)
       .map(result => result[0])
-      .map(result => result.transcript.split(','))
+      .map(result => result.transcript.trim(','))
       .join('');
+      formInput.value = transcript.replace(/[^\w\s]/gi, '');
 
-     
-
-    searchInput.forEach(searchInput => {
-      form.forEach(form => form.addEventListener('click', ()=>{
-        searchInput.value = transcript;
-    }))
-
-  });
-
-  })
-  //recognition.addEventListener('end', recognition.start);
-
-  recognition.start();
+  //recognition.addEventListener('end', recognition.end);
+  if(isRecording === true){
+    isRecording = false;
+  }
 })
-)
+
+  isRecording === false ? recognition.end : recognition.start();
+})
+
+
+
+
 
 //voice.addEventListener('click', recognition.start);
 

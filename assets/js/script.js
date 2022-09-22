@@ -1,8 +1,8 @@
 const search = document.querySelector('.search');
 const searchOverlay = document.querySelector('.overlay.searcher')
 const close = document.querySelector('.close');
-const formInput = document.querySelector('form input');
-const formBtn = document.querySelector('form button');
+const formInput = document.querySelector('.form input');
+const formBtn = document.querySelector('.form button');
 const reject = document.querySelector('.reject');
 const allow = document.querySelector('.allow');
 const content = document.querySelector('.content');
@@ -55,44 +55,39 @@ const searchByLoc = "http://dataservice.accuweather.com/locations/v1/cities/geop
 
 // search.addEventListener('click', () => {
 //     overlay.classList.remove('hidden');
-//     mainInputField.forEach(inputField => inputField.focus());
+//     formInput.forEach(inputField => inputField.focus());
 // });
 
 // clos.addEventListener('click', () => {
 //     overlay.classList.add('hidden');
 // });
 
-// mainInputField.forEach(inputField => inputField.addEventListener('change', ()=>{
-//   mainBtn.forEach(btn => btn.addEventListener('click', () => {
-//   // async function fetchyTwo() {
-//   //   const resp = await fetch()
-//   // }
-//   document.querySelector('.search-div').style.display = 'none';
-//   preloader.style.display = 'block';
+  formBtn.addEventListener('click', () => {
+  // async function fetchyTwo() {
+  //   const resp = await fetch()
+  // }
 
-//   console.log('good');
-//     console.log(inputField.value);
+    //console.log('good');
+    //console.log(formInput.value);
   
-//     searchValue = inputField.value;
-//   //console.log(searchValue);
+    let searchValue = formInput.value;
+  //console.log(searchValue);
 
-//   async function fetchCountry(countryName) {
-//     const resp = await fetch(`http://dataservice.accuweather.com/locations/v1/cities/search?apikey=${apikey}&q=${countryName}`);
-//     const data = await resp.json();
-//     console.log(data);
-//     const countryNameOne = data[0].Country.EnglishName || countryName;
-//     const locationKeyOne = data[0].Key;
+  async function fetchCountry(countryName) {
+    const resp = await fetch(`http://dataservice.accuweather.com/locations/v1/cities/search?apikey=${apikey}&q=${countryName}`);
+    const data = await resp.json();
+    //console.log(data);
+    const countryNameOne = `${data[0].EnglishName}, ${data[0].Country.EnglishName}` || countryName;
+    const locationKeyOne = data[0].Key;
 
-//     getWeather(locationKeyOne, countryNameOne);
-//   }
+    getWeather(locationKeyOne, countryNameOne);
+  }
  
-//   fetchCountry(searchValue);
+  fetchCountry(searchValue);
+  searchOverlay.style.display = 'none';
+  formInput.value = '';
 
-// })
-// )
-
-// }) 
-// )
+})
 
 
 
@@ -120,10 +115,10 @@ allow.addEventListener('click', function() {
       async function fetchy() {
         const resp = await fetch(`${searchByLoc}apikey=${apikey}&q=${lat}%2C${long}`);
         const data = await resp.json();
-        //console.log(data)
+        //console.log(data.EnglishName);
         //console.log(data.Country.EnglishName);
         //console.log(data.Key);
-        const countryName = data.Country.EnglishName;
+        const countryName = `${data.EnglishName}, ${data.Country.EnglishName}`;
         const locationKey = data.Key;
         const locationDetails = {countryName, locationKey};
         
@@ -139,6 +134,7 @@ allow.addEventListener('click', function() {
 
   })
 })
+
 
 async function getWeather(locationKey, countryName) {
   const searchByKey = `http://dataservice.accuweather.com/currentconditions/v1/${locationKey}`

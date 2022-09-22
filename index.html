@@ -58,7 +58,7 @@
     <div class="overlay confirmer">
       <div class="confirmation">
         <h4>Confirmation</h4>
-        <p>This app requires permission to use your location.</p>
+        <p>This app requires permission to use your location to display your location's weather info.</p>
         <div class="btns">
           <button class="reject">Don't allow</button>
           <button class="allow">Allow</button>
@@ -104,11 +104,17 @@
 
   <div class="overlay searcher">
     <div class="search-field">
-      <form action="">
-        <ion-icon name="mic-outline"></ion-icon>
+      <div class="form">
+        <ion-icon name="mic-outline" class="mic"></ion-icon>
         <input type="text" placeholder="Search for a location">
         <button class="searchBtn">Search</button>
-      </form>
+        <ul class="suggestions">
+          <li>Filter for a city</li>
+          <li>or any specific location</li>
+        </ul>
+      </div>
+      
+
       <ion-icon name="close-outline" class="close"></ion-icon>
     </div>
   </div>
@@ -117,6 +123,7 @@
   <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 
   <script src="../weather-app/assets/js/script.js"></script>
+  <script src="../weather-app/server.js"></script>
 </body>
 
 </html>
