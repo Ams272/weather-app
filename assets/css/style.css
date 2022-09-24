@@ -16,7 +16,7 @@
 
 body {
   min-height: 100vh;
-  background-image: linear-gradient(rgba(0,0,0,.9), rgba(0,0,0,.1)), url("/assets/images/rain.jpg");
+  background-image: linear-gradient(rgba(0, 0, 0, .9), rgba(0, 0, 0, .1)), url("/assets/images/rain.jpg");
   background-size: 100% 100%;
   background-position: center;
   background-repeat: no-repeat;
@@ -39,7 +39,7 @@ ion-icon {
   position: absolute;
   top: 0;
   left: 0;
-  background-color: rgba(0,0,0,.5);
+  background-color: rgba(0, 0, 0, .5);
   backdrop-filter: blur(3px);
   height: 100vh;
   width: 100vw;
@@ -81,7 +81,7 @@ nav .date .month {
 
 /* CONTENT */
 
-section.content{
+section.content {
   display: flex;
 }
 
@@ -125,7 +125,7 @@ footer .container {
 }
 
 footer .container p {
-  background-color: rgba(0,0,0,.5);
+  background-color: rgba(0, 0, 0, .5);
   padding: 15px;
   border-radius: 20px 20px 5px 5px;
   font-size: 1rem;
@@ -134,7 +134,7 @@ footer .container p {
 /* SEARCH FIELD */
 
 
-.search-field > ion-icon {
+.search-field>ion-icon {
   position: absolute;
   top: 45px;
   right: 50px
@@ -236,7 +236,7 @@ footer .container p {
   border-radius: 20px;
 }
 
-.btns button:first-child{
+.btns button:first-child {
   background-color: #eee;
 }
 
@@ -244,20 +244,20 @@ footer .container p {
   background-color: lightgreen;
 }
 
-<<<<<<< HEAD
 /* PRELOADER */
 
 .preloader img {
   height: 100px;
   margin-bottom: 20px;
-=======
+}
+
 .suggestions {
   margin: 0;
   padding: 0;
   position: relative;
   /*perspective: 20px;*/
   overflow-y: visible;
-  
+
 }
 
 .suggestions li {
@@ -276,15 +276,14 @@ footer .container p {
 
 .suggestions li:nth-child(even) {
   transform: perspective(100px) rotateX(3deg) translateY(2px) scale(1.001);
-  background: linear-gradient(to bottom,  #ffffff 0%,#EFEFEF 100%);
+  background: linear-gradient(to bottom, #ffffff 0%, #EFEFEF 100%);
 }
 
 .suggestions li:nth-child(odd) {
   transform: perspective(100px) rotateX(-3deg) translateY(3px);
-  background: linear-gradient(to top,  #ffffff 0%,#EFEFEF 100%);
+  background: linear-gradient(to top, #ffffff 0%, #EFEFEF 100%);
 }
 
 .hl {
   background: #ffc600;
->>>>>>> e230b4ced300c6ac677189adfe5ae74706b29723
 }

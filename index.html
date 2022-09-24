@@ -29,7 +29,7 @@
   <link rel="manifest" href="/assets/favicon/site.webmanifest">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
 
-  <link rel="stylesheet" href="../weather-app/assets/css/style.css">
+  <link rel="stylesheet" href="/assets/css/style.css">
 
 </head>
 
@@ -47,11 +47,12 @@
       </nav>
     </div>
   </header>
-  <section class="welcome-content">
+  <section class="welcome-content" style="display: none;">
     <div class="container">
       <div class="welcome-head">
         <h1 class="animate__animated animate__fadeInUp animate__delay-1s">== Any Weather ==</h1>
-        <p class="animate__animated animate__fadeInUp animate__delay-2s">Any weather lets you search for the weather condition of any location at any given time, using your device's
+        <p class="animate__animated animate__fadeInUp animate__delay-2s">Any weather lets you search for the weather
+          condition of any location at any given time, using your device's
           geolocation, or microphone.</p>
       </div>
     </div>
@@ -61,11 +62,7 @@
         <p>This app requires permission to use your location to display your location's weather info.</p>
         <div class="btns">
           <button class="reject">Don't allow</button>
-<<<<<<< HEAD
           <button class="permit">Allow</button>
-=======
-          <button class="allow">Allow</button>
->>>>>>> e230b4ced300c6ac677189adfe5ae74706b29723
         </div>
       </div>
       <div class="preloader" style="display: none;">
@@ -75,7 +72,7 @@
     </div>
   </section>
 
-  <section class="content" style="display: none;">
+  <section class="content">
     <div class="container">
       <aside>
         <section class="desc">
@@ -112,26 +109,30 @@
 
   <div class="overlay searcher">
     <div class="search-field">
-      <div class="form">
-        <ion-icon name="mic-outline" class="mic"></ion-icon>
-        <input type="text" placeholder="Search for a location">
-        <button class="searchBtn">Search</button>
-        <ul class="suggestions">
-          <li>Filter for a city</li>
-          <li>or any specific location</li>
-        </ul>
-      </div>
-      
-
+      <form action="">
+        <div class="form">
+          <ion-icon name="mic-outline" class="mic"></ion-icon>
+          <input type="text" placeholder="Search for a location">
+          <button class="searchBtn">Search</button>
+          <ul class="suggestions">
+            <li>Filter for a city</li>
+            <li>or any specific location</li>
+          </ul>
+        </div>
+      </form> 
       <ion-icon name="close-outline" class="close"></ion-icon>
+    </div>
+    <div class="preloader" style="display: none;">
+      <img src="/assets/images/location.png" alt="" class="animate__animated animate__headShake animate__infinite">
+      <p>Loading...</p>
     </div>
   </div>
 
   <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 
-  <script src="../weather-app/assets/js/script.js"></script>
-  <script src="../weather-app/server.js"></script>
+  <script src="/assets/js/script.js"></script>
+  <script src="/server.js"></script>
 </body>
 
 </html>
