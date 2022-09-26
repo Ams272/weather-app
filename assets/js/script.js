@@ -5,7 +5,10 @@ const close = document.querySelector('.close');
 const formInput = document.querySelector('.form input');
 const formBtn = document.querySelector('.form button');
 const mainForm = document.querySelector('form');
-const content = document.querySelector('.content');
+const welcome = document.querySelector('.welcome-content');
+const mainContent = document.querySelector('.content');
+
+const preloader = document.querySelectorAll('.preloader');
 
 // Search functionality
 
@@ -17,6 +20,16 @@ search.addEventListener('click', () => {
 close.addEventListener('click', () => {
   searchOverlay.style.display = 'none';
 })
+
+function showPreloader() {
+  preloader.forEach((pre) => {
+    if (window.getComputedStyle(pre).display == 'none') {
+      pre.style.display = 'block'
+    } else {
+      pre.style.display = 'none';
+    }
+  })
+}
 
 // Date functionality
 
@@ -37,14 +50,13 @@ thisMonth.textContent = `${months[month]}, ${year}`;
 
 const confirmOverLay = document.querySelector('.confirmer');
 const confirmBox = document.querySelector('.confirmation');
-const preloader = document.querySelector('.preloader');
+
 const permit = document.querySelector('.permit');
 const reject = document.querySelector('.reject');
 const apikey = "o9I8UmxOErWHZmnRw2WQi755tEID5ZZD";
 const endPoint = 'http://dataservice.accuweather.com/locations/v1/topcities/50?apikey=o9I8UmxOErWHZmnRw2WQi755tEID5ZZD';
 const searchByLoc = "http://dataservice.accuweather.com/locations/v1/cities/geoposition/search?";
-const welcome = document.querySelector('.welcome-content');
-const mainContent = document.querySelector('.content');
+
 
 const condition = document.querySelector('.desc-text');
 const temp = document.querySelector('.temp');
@@ -63,7 +75,8 @@ permit.addEventListener('click', function () {
   navigator.geolocation.getCurrentPosition((position) => {
     setTimeout(() => {
       confirmBox.style.display = 'none';
-      preloader.style.display = 'block';
+      // preloader.style.display = 'block';
+      showPreloader();
     }, 500);
 
     let long = position.coords.longitude;
@@ -101,6 +114,11 @@ async function getWeather(locationKey, countryName) {
   //console.log(data[0].Temperature)
   const temperature = `${data[0].Temperature.Metric.Value}`;
   const weatherCondition = data[0].WeatherText;
+  if (window.getComputedStyle(welcome).display == 'block') {
+    welcome.style.display = 'none'
+  }  else {
+    welcome.style.display = 'block'
+  }
   confirmOverLay.style.display = 'none';
   welcome.style.display = 'none';
   mainContent.style.display = 'block';
@@ -113,12 +131,14 @@ async function getWeather(locationKey, countryName) {
 
 mainForm.addEventListener('submit', function(e) {
   e.preventDefault();
+
   const searchValue = formInput.value;
   searchField.style.display = 'none';
-  preloader.style.display = 'block';
+  showPreloader();
   setTimeout(() => {
     searchOverlay.style.display = 'none';
     fetchCountry(searchValue);
+    showPreloader();
   }, 3000);
   
 })
