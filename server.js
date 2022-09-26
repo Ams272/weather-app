@@ -48,7 +48,11 @@ getCity()
 
     suggestions.addEventListener('click', (e) => {
       //console.log(e.target.textContent);
-      formInput.value = e.target.textContent;
+      if(e.target.textContent.includes(formInput.value)){
+        formInput.value = e.target.textContent;
+        
+      }
+      
 
       // clear and redo the lists
       suggestions.innerHTML = `<ul class="suggestions">
