@@ -10,7 +10,7 @@ let cities = [];
 
 // get cities
 const getCity = async () => {
-    let base = 'http://dataservice.accuweather.com/locations/v1/topcities/150?apikey=o9I8UmxOErWHZmnRw2WQi755tEID5ZZD';
+    let base = 'https://dataservice.accuweather.com/locations/v1/topcities/150?apikey=o9I8UmxOErWHZmnRw2WQi755tEID5ZZD';
     const response = await fetch(base);
     const data = await response.json();
     return data;

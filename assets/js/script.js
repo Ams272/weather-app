@@ -54,8 +54,8 @@ const confirmBox = document.querySelector('.confirmation');
 const permit = document.querySelector('.permit');
 const reject = document.querySelector('.reject');
 const apikey = "o9I8UmxOErWHZmnRw2WQi755tEID5ZZD";
-const endPoint = 'http://dataservice.accuweather.com/locations/v1/topcities/50?apikey=o9I8UmxOErWHZmnRw2WQi755tEID5ZZD';
-const searchByLoc = "http://dataservice.accuweather.com/locations/v1/cities/geoposition/search?";
+const endPoint = 'https://dataservice.accuweather.com/locations/v1/topcities/50?apikey=o9I8UmxOErWHZmnRw2WQi755tEID5ZZD';
+const searchByLoc = "https://dataservice.accuweather.com/locations/v1/cities/geoposition/search?";
 
 
 const condition = document.querySelector('.desc-text');
@@ -107,7 +107,7 @@ permit.addEventListener('click', function () {
 
 
 async function getWeather(locationKey, countryName) {
-  const searchByKey = `http://dataservice.accuweather.com/currentconditions/v1/${locationKey}`
+  const searchByKey = `https://dataservice.accuweather.com/currentconditions/v1/${locationKey}`
   const resp = await fetch(`${searchByKey}?apikey=${apikey}`);
   const data = await resp.json();
   //console.log(data);
@@ -144,7 +144,7 @@ mainForm.addEventListener('submit', function(e) {
 })
 
 async function fetchCountry(countryName) {
-  const resp = await fetch(`http://dataservice.accuweather.com/locations/v1/cities/search?apikey=${apikey}&q=${countryName}`);
+  const resp = await fetch(`https://dataservice.accuweather.com/locations/v1/cities/search?apikey=${apikey}&q=${countryName}`);
   const data = await resp.json();
   //console.log(data);
   const countryNameOne = `${data[0].EnglishName}, ${data[0].Country.EnglishName}` || countryName;
